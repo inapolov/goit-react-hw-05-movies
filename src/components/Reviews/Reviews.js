@@ -10,8 +10,7 @@ export default function Reviews() {
     fetchMovieReviews(movieId).then(response=>setMovie(response.results));
     }, [movieId]);
 
-    console.log(movie);
-
+    
         
     return (
         <>

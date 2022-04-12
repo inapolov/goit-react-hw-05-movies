@@ -1,6 +1,7 @@
 import { useParams, NavLink, Outlet } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { fetchMovieDetails } from 'services/fethApi';
+import styles from './MovieDetailsView.module.css';
 
 export default function MovieView() {
   const { movieId } = useParams();
@@ -12,7 +13,8 @@ export default function MovieView() {
  
   return (
     <>
-      <button>Go back</button>
+      <div className={styles.button}><NavLink to="/" className={styles.link}>&#8592;Go back</NavLink></div>
+      
       {movie && (
         <div>
           <img src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`} alt={movie.title}></img>
