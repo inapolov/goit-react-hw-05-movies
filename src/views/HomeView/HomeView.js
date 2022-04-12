@@ -11,6 +11,7 @@ function HomeView() {
         fetchTrending().then(response=>setMovies(response.results));
     }, []);
 
+ 
 
     return (
         <>

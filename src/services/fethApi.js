@@ -16,3 +16,15 @@ export function fetchTrending() {
 export function fetchMovieDetails(movieId) {
     return fetchMovies(`${BASE_URL}/movie/${movieId}?api_key=${KEY}`);
 }
+
+export function fetchMovieCredits(movieId) {
+  return fetchMovies(
+    `${BASE_URL}/movie/${movieId}/credits?api_key=${KEY}`
+  );
+}
+
+export function fetchMovieReviews(movieId) {
+  return fetchMovies(
+    `${BASE_URL}/movie/${movieId}/reviews?api_key=${KEY}`
+  );
+}

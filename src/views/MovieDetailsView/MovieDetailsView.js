@@ -1,4 +1,4 @@
-import { useParams, NavLink } from "react-router-dom";
+import { useParams, NavLink, Outlet } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { fetchMovieDetails } from 'services/fethApi';
 
@@ -35,6 +35,7 @@ export default function MovieView() {
             <li><NavLink to="reviews">Reviews</NavLink></li>
           </ul>          
           <hr />
+            <Outlet />
         </div>
 
       )}
