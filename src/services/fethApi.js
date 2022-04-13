@@ -28,3 +28,9 @@ export function fetchMovieReviews(movieId) {
     `${BASE_URL}/movie/${movieId}/reviews?api_key=${KEY}`
   );
 }
+
+export function fetchSearchMovie(searchQuery) {
+  return fetchMovies(
+    `${BASE_URL}/search/movie?api_key=${KEY}&query=${searchQuery}`
+  );
+}

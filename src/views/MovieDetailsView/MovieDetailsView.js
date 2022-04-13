@@ -1,4 +1,4 @@
-import { useParams, NavLink, Outlet } from "react-router-dom";
+import { useParams, NavLink, Outlet,useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { fetchMovieDetails } from 'services/fethApi';
 import styles from './MovieDetailsView.module.css';
@@ -6,6 +6,9 @@ import styles from './MovieDetailsView.module.css';
 export default function MovieView() {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
+  const navigate = useNavigate();
+
+  const goBack = () => navigate(-1);
 
   useEffect(() => {
     fetchMovieDetails(movieId).then(setMovie);
@@ -13,7 +16,8 @@ export default function MovieView() {
  
   return (
     <>
-      <div className={styles.button}><NavLink to="/" className={styles.link}>&#8592;Go back</NavLink></div>
+      <button onClick={goBack} className={styles.button}>&#8592;Go back</button>
+      {/* <div className={styles.button}><NavLink to="/" className={styles.link}>&#8592;Go back</NavLink></div> */}
       
       {movie && (
         <div>
