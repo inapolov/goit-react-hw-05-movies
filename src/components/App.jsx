@@ -1,12 +1,24 @@
 import { Routes, Route } from "react-router-dom";
+import { lazy } from "react";
 import Layout from "./Layout/Layout";
-import HomeView from "views/HomeView/HomeView";
-import MoviesView from "views/MoviesView/MoviesView";
-import MovieDetailsView from "views/MovieDetailsView/MovieDetailsView";
+// import HomeView from "views/HomeView/HomeView";
+// import MoviesView from "views/MoviesView/MoviesView";
+// import MovieDetailsView from "views/MovieDetailsView/MovieDetailsView";
 import NotFoundView from "views/NotFoundView/NotFoundView";
 import Cast from "./Cast/Cast";
 import Reviews from "./Reviews/Reviews";
 
+
+
+const createAsyncView = componentName => {
+  return lazy(() => {
+    return import(`views/${componentName}/${componentName}`)
+  })
+};
+
+const HomeView = createAsyncView('HomeView');
+const MoviesView = createAsyncView('MoviesView');
+const MovieDetailsView = createAsyncView('MovieDetailsView');
 
 function App() {
   return (    
