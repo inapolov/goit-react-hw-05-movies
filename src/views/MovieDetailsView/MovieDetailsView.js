@@ -1,4 +1,4 @@
-import { useParams, NavLink, Outlet,useNavigate } from "react-router-dom";
+import { useParams, NavLink, Outlet,useNavigate,useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { fetchMovieDetails } from 'services/fethApi';
 import styles from './MovieDetailsView.module.css';
@@ -7,8 +7,13 @@ export default function MovieView() {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
   const navigate = useNavigate();
+  const location = useLocation();
 
-  const goBack = () => navigate(-1);
+  const goBack = () => navigate(
+      location.state
+        ? `${location.state.from.pathname}${location.state.from.search}`
+        : '/movies'
+    );;
 
   useEffect(() => {
     fetchMovieDetails(movieId).then(setMovie);
@@ -37,8 +42,8 @@ export default function MovieView() {
           <hr />
           <p>Additional information</p>
           <ul>
-            <li><NavLink to="cast">Cast</NavLink></li>
-            <li><NavLink to="reviews">Reviews</NavLink></li>
+            <li><NavLink to="cast" state={location.state ? { from: location.state.from } : null}>Cast</NavLink></li>
+            <li><NavLink to="reviews" state={location.state ? { from: location.state.from } : null}>Reviews</NavLink></li>
           </ul>          
           <hr />
             <Outlet />
