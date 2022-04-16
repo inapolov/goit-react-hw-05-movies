@@ -1,15 +1,17 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link,useSearchParams } from 'react-router-dom';
 import { fetchSearchMovie } from 'services/fethApi';
 import Searchbar from 'components/Searchbar/Searchbar';
 
 function MoviesView() {
 
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchQuery, setSearchQuery] = useState( searchParams.get('query') ?? '');
   const [movies, setMovies] = useState([]);
 
   const handleFormSubmit = searchQuery => {
     setSearchQuery(searchQuery);
+    setSearchParams({ query: searchQuery });
     setMovies([]);
   };
 
